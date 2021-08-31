@@ -1,4 +1,4 @@
-# Part 1 fullstack open course
+# course-information
 
-Branches hook, hook-two and hooks-three, are part of the course that i was doing while reading the content, THEY ARE NOT THE PART OF THE SUBMITTED EXERCISES.
-Exercises 1.1-1.14 are part of the main branch.
+exercises 1.1-1.5 on main branch in this folder
+branches hooks, hooks-two and hooks-three are notes for myself
