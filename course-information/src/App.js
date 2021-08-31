@@ -1,19 +1,36 @@
 import React, { useState } from "react";
-const Display = ({ counter }) => <div>{counter}</div>;
-
-const Button = ({ text, click }) => <button onClick={click}>{text}</button>;
 
 const App = () => {
-  const [counter, setCounter] = useState(0); //every time the usestate hook is used, causes the app component(in this case) to be rerendered
-  const increaseOne = () => setCounter(counter + 1);
-  const minusOne = () => setCounter(counter - 1);
-  const setToZero = () => setCounter(0);
+  // const [left, setLeft] = useState(0);
+  // const [right, setRight] = useState(0);
+  const [clicks, setClicks] = useState({
+    left: 0,
+    right: 0,
+  });
+
+  const handleLeft = () => {
+    const newClicks = {
+      ...clicks, //es importante que este primero el object destructuring, y luego la prop a modificar en la function.
+      left: clicks.left + 1,
+      // right: clicks.right,
+    };
+    setClicks(newClicks);
+  };
+  const handleRight = () => {
+    const newClicks = {
+      // left: clicks.left,
+      ...clicks, //pasa todo el objeto clicks a la variable newClicks, si se especifica una prop del objeto esta no se pasa.
+      right: clicks.right + 1, //it is forbidden to use, clicks.right++ in react
+    };
+    setClicks(newClicks);
+  };
+  //in this case it would be easier to declare 2 usestate hooks, but sometimes how its done now is preferable.
   return (
     <div>
-      <Display counter={counter} />
-      <Button text="plus" click={increaseOne} />
-      <Button text="minus" click={minusOne} />
-      <Button text="reset" click={setToZero} />
+      {clicks.left}
+      <button onClick={handleLeft}>left</button>
+      <button onClick={handleRight}>right</button>
+      {clicks.right}
     </div>
   );
 };
