@@ -4,6 +4,9 @@ const Statistics = ({ clicks }) => {
   let all = clicks.good + clicks.neutral + clicks.bad;
   let average = ((clicks.good - clicks.bad) / all).toFixed(2);
   let positive = ((clicks.good * 100) / all).toFixed(1);
+  if (all === 0) {
+    return <p>no feedback given</p>;
+  }
   return (
     <div>
       <p>good: {clicks.good}</p>
