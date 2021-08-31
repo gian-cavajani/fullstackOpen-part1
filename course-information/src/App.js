@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 
+const History = (props) => {
+  const { allClicks } = props;
+  if (allClicks.length === 0) {
+    return <div>the app is used by pressing the buttons</div>;
+  }
+  return <div>button press history: {allClicks.join(" ")}</div>;
+};
+
+const Button = (props) => {
+  const { text, click } = props;
+  return <button onClick={click}>{text}</button>;
+};
+
 const App = () => {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [allClicks, setAll] = useState([]);
 
   const handleLeftClick = () => {
-    setAll(allClicks.concat("L")); //allClicks.push("L") would work but it could cause bugs, also it mutates the existing array,
-    // , which i dont want, rather i'd prefer to make a new instance of the previous array.
+    setAll(allClicks.concat("L"));
     setLeft(left + 1);
   };
 
@@ -15,15 +27,13 @@ const App = () => {
     setAll(allClicks.concat("R"));
     setRight(right + 1);
   };
-  console.log("data", allClicks);
   return (
     <div>
       {left}
-      <button onClick={handleLeftClick}>left</button>
-      <button onClick={handleRightClick}>right</button>
+      <Button click={handleLeftClick} text="left" />
+      <Button click={handleRightClick} text="right" />
       {right}
-      <p>{allClicks.join(" ")}</p>
-      {/* it joins the array into a string with the elements separated with a blank-space */}
+      <History allClicks={allClicks} />
     </div>
   );
 };
