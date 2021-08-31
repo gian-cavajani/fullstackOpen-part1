@@ -24,7 +24,7 @@ const App = () => {
     };
     setClicks(newClicks);
   };
-  //in this case it would be easier to declare 2 usestate hooks, but sometimes how its done now is preferable.
+  //in this case it would be easier to declare 2 usestate hooks, but sometimes how its done now(with complex state) is preferable.
   return (
     <div>
       {clicks.left}
