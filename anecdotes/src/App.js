@@ -1,5 +1,23 @@
 import React, { useState } from "react";
 
+const MostVoted = (props) => {
+  const { p1, p2 } = props;
+  if (p2 === 0) {
+    return <p>you haven't vote yet</p>;
+  }
+  return (
+    <div>
+      <h2>Anecdote with most votes: </h2>
+      <p>
+        <em>
+          <q>{p1}</q>
+        </em>
+      </p>
+      <p>votes: {p2}</p>
+    </div>
+  );
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often",
@@ -27,15 +45,16 @@ const App = () => {
   console.log("ind", ind);
   return (
     <div>
-      <h2>anecdote of the day</h2>
-      <p>{anecdotes[selected]}</p>
+      <h2>Anecdote of the day</h2>
+      <p>
+        <q>
+          <em>{anecdotes[selected]}</em>
+        </q>
+      </p>
       <p>has {points[selected]} votes</p>
       <button onClick={handleRandom}>random anecdote</button>
       <button onClick={handleVote}>vote</button>
-      <h2>Anecdote with most votes: </h2>
-      <p>{anecdotes[ind]}</p>
-      <p>has {points[ind]} votes</p>
-      <p></p>
+      <MostVoted p1={anecdotes[ind]} p2={points[ind]} />
     </div>
   );
 };
