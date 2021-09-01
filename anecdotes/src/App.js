@@ -23,12 +23,19 @@ const App = () => {
     setPoints(copy);
   };
   console.log("out", points);
+  let ind = points.indexOf(Math.max(...points));
+  console.log("ind", ind);
   return (
     <div>
+      <h2>anecdote of the day</h2>
       <p>{anecdotes[selected]}</p>
-      <p>has {points[selected]} points</p>
+      <p>has {points[selected]} votes</p>
       <button onClick={handleRandom}>random anecdote</button>
       <button onClick={handleVote}>vote</button>
+      <h2>Anecdote with most votes: </h2>
+      <p>{anecdotes[ind]}</p>
+      <p>has {points[ind]} votes</p>
+      <p></p>
     </div>
   );
 };
