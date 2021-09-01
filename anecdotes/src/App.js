@@ -12,22 +12,23 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-
-  const num = (number) => {
-    if (number > anecdotes.length) {
-      return 0;
-    }
-  };
-
+  const [points, setPoints] = useState(Array(anecdotes.length).fill(0)); //creates an array with the number of 0s of the anecdote length
   const handleRandom = () => {
     let random = Math.floor(Math.random() * anecdotes.length);
     setSelected(random);
   };
-
+  const handleVote = () => {
+    const copy = [...points];
+    copy[selected] += 1;
+    setPoints(copy);
+  };
+  console.log("out", points);
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {points[selected]} points</p>
       <button onClick={handleRandom}>random anecdote</button>
+      <button onClick={handleVote}>vote</button>
     </div>
   );
 };
